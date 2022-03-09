@@ -8,7 +8,11 @@ describe('Use global search', () => {
     adminPage.menuSearchButton.click();
   });
 
-  it('show search page', () => {
+  afterEach(() => {
+    globalSearchPage.searchInputReset.first().click();
+  });
+
+  it.only('show search page', () => {
     adminPage.menuSearchButton.click();
     globalSearchPage.searchDropDown.should('be.visible').and('contain', 'Everything');
     globalSearchPage.searchInputField.should('be.visible');

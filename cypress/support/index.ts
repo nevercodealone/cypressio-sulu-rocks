@@ -14,14 +14,12 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-
-import {loginPage} from './pages';
+import './commands';
 
 Cypress.Cookies.defaults({
   preserve: ['SULUSESSID'],
 });
 
 before(() => {
-  loginPage.visit();
-  loginPage.doLoginAsAdmin();
+  cy.login();
 });
