@@ -1,12 +1,8 @@
-import { adminPage, globalSearchPage, loginPage } from '../../support/pages';
+import {adminPage, globalSearchPage} from '../../support/pages';
 
 describe('Use global search', () => {
   beforeEach(() => {
-    loginPage.visit();
-    cy.intercept('/admin/login').as('login');
     cy.intercept('/admin/search/query?q=*').as('search');
-    loginPage.doLoginAsAdmin();
-    cy.wait('@login');
 
     globalSearchPage.openAdminSidebar();
     adminPage.menuSearchButton.click();
