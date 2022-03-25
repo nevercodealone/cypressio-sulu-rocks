@@ -1,0 +1,40 @@
+stages:
+  - test
+  - master
+
+dev:
+  stage: test
+  image:
+    name: cypress/included:8.6.0
+    entrypoint: ['']
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+  artifacts:
+    paths:
+      - ./cypress/screenshots
+      - ./cypress/videos
+    when: on_failure
+    expire_in: 1 week
+  script:
+    - npm install
+    - npm run test -- --browser chrome --spec=${SPEC_FILE}
+  tags:
+    - docker-executor
+master:
+  stage: master
+  image:
+    name: cypress/included:8.6.0
+    entrypoint: ['']
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master" && $CI_PIPELINE_SOURCE == "schedule"
+  artifacts:
+    paths:
+      - ./cypress/screenshots
+      - ./cypress/videos
+    when: on_failure
+    expire_in: 1 week
+  script:
+    - npm install
+    - npm run test -- --browser chrome --spec=config/prod.cypress.json
+  tags:
+    - docker-executor
