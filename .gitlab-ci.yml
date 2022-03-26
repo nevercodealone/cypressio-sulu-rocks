@@ -5,7 +5,7 @@ stages:
 dev:
   stage: test
   image:
-    name: cypress/included:8.6.0
+    name: cypress/included:9.5.2
     entrypoint: ['']
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
@@ -13,7 +13,6 @@ dev:
     paths:
       - ./cypress/screenshots
       - ./cypress/videos
-    when: on_failure
     expire_in: 1 week
   script:
     - npm install
@@ -23,7 +22,7 @@ dev:
 master:
   stage: master
   image:
-    name: cypress/included:8.6.0
+    name: cypress/included:9.5.2
     entrypoint: ['']
   rules:
     - if: $CI_COMMIT_BRANCH == "master" && $CI_PIPELINE_SOURCE == "schedule"
@@ -31,7 +30,6 @@ master:
     paths:
       - ./cypress/screenshots
       - ./cypress/videos
-    when: on_failure
     expire_in: 1 week
   script:
     - npm install
