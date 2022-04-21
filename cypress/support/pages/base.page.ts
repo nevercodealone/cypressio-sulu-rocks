@@ -18,10 +18,12 @@ export default class BasePage {
   }
 
   waitUntilRedirectedTo() {
+    cy.log('wait until redirect');
     cy.waitUntil(
       () => {
         return cy.url().then($url => {
           const actualPath = new URL($url).pathname;
+          cy.log('Redirect:' + actualPath + ' - ' + this.path);
           return new RegExp(`^${this.path}$`).test(actualPath);
         });
       },
