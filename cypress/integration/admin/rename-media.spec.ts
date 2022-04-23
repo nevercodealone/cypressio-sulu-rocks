@@ -15,5 +15,10 @@ describe('Change media name', () => {
     cy.get('#\\/title').click().clear().type('Wolfsrudel.jpg').clear().type('Wolf.jpg');
     cy.get('.su-save').click();
   });
+
+  it('Navigate to media page again, check the new name', () => {
+  	adminPage.visit('/admin/#/collections/en');
+  	cy.get('div[class^="media-card--"]').first().should('contain','Wolf.jpg');
+  });
   
 });
