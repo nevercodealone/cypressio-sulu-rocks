@@ -14,10 +14,9 @@ describe('Count the number of artist on the artist page', () => {
         });
 
         it('Count and compare with fixture data', function(){
-            expect(this.ArtistCounter.artistsCount.en).to.exist;
-            cy.get('.card').should('have.length', this.ArtistCounter.artistsCount.en).then(_cards=>{
-                cy.log('Succesfully counted and compared', _cards.length);
-            });
+            cy.wrap(this.ArtistCounter.artistsCount.en).should('exist').and('gt',0);
+            cy.get('.card').should('have.length', this.ArtistCounter.artistsCount.en);
+            cy.log('Succesfully counted and compared', this.ArtistCounter.artistsCount.en);
         });
     });
 
@@ -26,11 +25,10 @@ describe('Count the number of artist on the artist page', () => {
             cy.visit(`${Cypress.env('URL')}/de/musiker`);
         });
 
-        it('Count DE Artists on page and compare with fixture data', function(){
-            expect(this.ArtistCounter.artistsCount.de).to.exist;
-            cy.get('.card').should('have.length', this.ArtistCounter.artistsCount.de).then(_cards=>{
-                cy.log('Succesfully counted and compared', _cards.length);
-            });
+        it('Count and compare with fixture data', function(){
+            cy.wrap(this.ArtistCounter.artistsCount.de).should('exist').and('gt',0);
+            cy.get('.card').should('have.length', this.ArtistCounter.artistsCount.de);
+            cy.log('Succesfully counted and compared', this.ArtistCounter.artistsCount.de);
         });
     });
 
