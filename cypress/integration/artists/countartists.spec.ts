@@ -14,7 +14,7 @@ describe('Count the number of artist on the artist page', () => {
         });
 
         it('Count and compare with fixture data', function(){
-            cy.wrap(this.ArtistCounter.artistsCount.en).should('exist').and('gt',0);
+            cy.wrap(this.ArtistCounter.artistsCount.en).should('gt',0);
             cy.get('.card').should('have.length', this.ArtistCounter.artistsCount.en);
             cy.log('Succesfully counted and compared', this.ArtistCounter.artistsCount.en);
         });
@@ -26,7 +26,7 @@ describe('Count the number of artist on the artist page', () => {
         });
 
         it('Count and compare with fixture data', function(){
-            cy.wrap(this.ArtistCounter.artistsCount.de).should('exist').and('gt',0);
+            cy.wrap(this.ArtistCounter.artistsCount.de).should('gt',0);
             cy.get('.card').should('have.length', this.ArtistCounter.artistsCount.de);
             cy.log('Succesfully counted and compared', this.ArtistCounter.artistsCount.de);
         });

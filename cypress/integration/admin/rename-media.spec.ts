@@ -12,7 +12,7 @@ describe('Change media name', () => {
   it('Navigate to media page, find media name field and set new name', () => {
     adminPage.visit('/admin/#/collections/en');
     cy.get('[aria-label="su-pen"]').first().click();
-    cy.get('#\\/title').click().clear().type('Wolfsrudel.jpg').clear().type('Wolf.jpg');
+    cy.get('#\\/title').click().clear().type('Wolf.jpg');
     cy.get('.su-save').click();
   });
 
