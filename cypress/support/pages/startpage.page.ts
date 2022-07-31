@@ -5,6 +5,10 @@ export class StartpageClass extends BasePage {
     super();
     this.path = '/de';
   }
+
+  get articleHeadline() {
+    return cy.get('.teaser__title');
+  }
 }
 
 export const startpageClass = new StartpageClass();
